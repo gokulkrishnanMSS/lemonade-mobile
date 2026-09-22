@@ -5,38 +5,19 @@
  * @format
  */
 
-import { StatusBar, StyleSheet, useColorScheme, View } from 'react-native';
-import {
-  SafeAreaProvider,
-  useSafeAreaInsets,
-} from 'react-native-safe-area-context';
-import Login from './src/modules/login/pages/Login';
+import { StatusBar } from 'react-native';
+import { SafeAreaProvider } from 'react-native-safe-area-context';
+import Music from './src/modules/music/Music';
 
 function App() {
-  const isDarkMode = useColorScheme() === 'dark';
-
   return (
     <SafeAreaProvider>
-      <StatusBar barStyle={isDarkMode ? 'light-content' : 'dark-content'} />
-      <AppContent />
+      {/* Every screen uses the dark theme */}
+      <StatusBar barStyle="light-content" />
+      {/* Home is the start screen for now; the login page (src/modules/login/pages/Login.tsx) is not wired in. */}
+      <Music />
     </SafeAreaProvider>
   );
 }
-
-function AppContent() {
-  const safeAreaInsets = useSafeAreaInsets();
-
-  return (
-    <View style={[styles.container, { paddingTop: safeAreaInsets.top }]}>
-      <Login />
-    </View>
-  );
-}
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-  },
-});
 
 export default App;
